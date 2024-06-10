@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        .loading-container {
+            text-align: center;
+        }
+    </style>
+    <script>
+        function checkStatus(taskID) {
+            fetch(`/task_status/${taskID}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.state === 'SUCCESS') {
+                        window.location.href = `/success?filename=${data.video_filename}`;
+                    } else if (data.state === 'FAILED') {
+                        alert('스크립트 실행 중 오류가 발생했습니다.');
+                        window.location.href = "/";
+                    } else {
+                        setTimeout(() => checkStatus(taskID), 5000);
+                    }
+                });
+        }
+
+        function getCurrentStatus(taskID) {
+            fetch(`/current_status/${taskID}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('statusMessage').innerText = data.status;
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const taskID = "{{ task_id }}";
+            checkStatus(taskID);
+            setInterval(() => getCurrentStatus(taskID), 10000);  // 매 초마다 상태를 업데이트
+        });
+    </script>
+</head>
+<body>
+    <div class="loading-container">
+        <h1>Loading...</h1>
+        <p id="statusMessage">Initializing...</p>
+        <p>Please wait while we process your request.</p>
+    </div>
+</body>
+</html>

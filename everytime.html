@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="CSS.css" />
+		<title>에브리타임</title>
+		<link rel="icon" href="https://play-lh.googleusercontent.com/0oDBGRaLXdz92kZGHpCNts6KQUr38rG4uCTrV8_32WEyMy70tzC5CM5KbPk3yFoVrwM"/>
+        <style>
+            * {
+                box-sizing: border-box; 
+            }
+            body {
+                margin: 0;
+                font-family: sans-serif; 
+            }
+            header .container { 
+                width: 1180px;
+                height: 80px;
+                margin: auto;
+                border-bottom: solid 1px grey;
+            }
+            .container .logo {
+                height: 80px;
+                width: 150px;
+                float:left;
+                margin-left : 25px;
+            } 
+            .container .logo img {
+                height: 70px;
+                margin-top: 5px;
+                object-fit: cover;
+                float:left;
+                cursor: pointer;
+            }
+            .container .logo p {
+                width: 80px;
+                height:80px;
+                float:left;
+                display: flex;
+            }
+            .container .logo span:nth-child(1) {
+                color:#c62917;
+                margin:auto;
+                display: block;
+                font-size:8px;
+                margin-top:15px;
+                margin-left:10px;
+            }
+            .container .logo span:nth-child(2) {
+                font-size:25px;
+                margin:auto;
+            }
+            .container .menu li a{
+                text-decoration: none;
+                color:black;
+                font-weight:bold;
+            }
+            .container .menu li a:hover{
+                text-decoration: none;
+                color: #c62917;
+                font-weight:bold;
+            }
+            .container .icon {
+                height: 50px;
+                width: 100px;
+                float:right;
+                margin-right:40px;
+                margin-top:28px;
+            }
+            .container .icon img {
+                height: 30px;
+                float:right;
+                display:block;
+                margin-right:15px;
+            }
+            .container .menu {
+                height: 80px;
+                width: 600px;
+                float:left;
+                margin-left: 170px;
+            }
+            .container .menu ul {
+                margin-top: 30px;
+                display: block;
+                list-style-type: none;
+            }
+            .container .menu li{
+                float:left;
+                margin-left: 15px;
+            
+            }
+
+
+            main .container1 {
+                background-color: #f8f8f8;
+                width: auto;
+                height: 1100px;
+                position: relative;
+                padding: 18px;
+            }
+            main aside {
+                width: 324px;
+                height: 455px;
+                float: left;
+            }
+            main aside form select {
+                width: 324px;
+                height: 33px;
+                border: solid 2px #bfbfbf;
+                padding: 5px;
+            }
+            main aside .current {
+                width: 324px;
+                height: 170px;
+                background-color: white;
+                margin-top: 5px;
+                border: solid 0.5px #bfbfbf;
+            }
+            main aside .current p {
+                font-weight: bold;
+                margin-top: 28px;
+                margin-left: 35px;
+                font-size: 20px;
+            }
+            main aside .choice {
+                width: 324px;
+                height: auto;
+                background-color: white;
+                border: solid 0.5px #bfbfbf;
+                margin-top: 5px;
+            }
+            .choice ul {
+                padding: 0px;
+                margin-top: 0px;
+            }
+            .choice li {
+                height: 50px;
+                padding: 15px;
+                list-style-type: none;
+                color: #bfbfbf;
+            }
+            .choice li:hover {
+                height: 50px;
+                padding: 15px;
+                list-style-type: none;
+                background-color: #f8f8f8;
+            }
+            .choice li:visited {
+                height: 50px;
+                padding: 15px;
+                list-style-type: none;
+                background-color: #f8f8f8;
+            }
+            
+            .choice a {
+                text-decoration: none;
+            }
+            table {
+                width: calc(100% - 340px);
+                height: auto;
+                float: left;
+                margin-left: 15px;
+                border-collapse: collapse;
+                table-layout: fixed;
+            }
+            .thead {
+                height: 40px;
+                border: solid 0.5px #bfbfbf;
+                text-align: center;
+                background-color: #f2f2f2;
+            }
+            tr {
+                height: 65px;
+                border: solid 0.5px #bfbfbf;
+                background-color: #f8f8f8;
+            }
+            td {
+                width: 8px;
+                border: solid 1px #bfbfbf;
+                text-align: center;
+            }
+            .col1 {
+                width: 5%;
+            }
+            .col7 {
+                width: 5%;
+            }
+        </style>
+	</head>
+	<body>
+		
+		<header>
+			<div class="container">
+
+				<div class="logo">
+                    <a href="/"><img src="{{ url_for('static', filename='data/everytime.png') }}" alt="EverytimeLogo"></a>
+					<p>
+						<span>에브리타임</span>
+						<span>SASA</span>
+					</p>
+				</div>
+
+				<div class="menu">
+					<ul>
+						<li><a href="https://sasa.riroschool.kr/">게시판</a></li>
+						<li>
+							<a href="">시간표</a>
+						</li>
+						<li><a href="">강의실</a></li>
+						<li><a href="https://m.search.naver.com/search.naver?sm=mtp_sug.top&where=m&query=%ED%95%99%EC%A0%90%EA%B3%84%EC%82%B0%EA%B8%B0&acq=%ED%95%99%EC%A0%90&acr=2&qdt=0">학점계산기</a></li>
+						<li><a href="{{ url_for('form', source='everytime') }}">쇼츠 제작</a></li>
+						<li><a href="/peverytime">개인정보</a></li>
+						<li><a href="/">만든 사람</a></li>
+					</ul>
+				</div>
+				<div class="icon">
+					<img src="https://cdn-icons-png.flaticon.com/512/1159/1159740.png" />
+					<img src="https://cdn-icons-png.flaticon.com/512/66/66933.png" />
+				</div>
+			</div>
+		</header>
+		<main>
+            <div class="container1">
+                <aside>
+                    <form class="select">
+                        <select id="semesters"
+                            ><option>2024년 1학기</option
+                            ><option>2023년 겨울학기</option
+                            ><option>2023년 2학기</option
+                            ><option>2023년 여름학기</option
+                            ><option>2023년 1학기</option
+                            ><option>2022년 겨울학기</option
+                            ><option>2022년 2학기</option
+                            ><option>2022년 여름학기</option
+                            ><option>2022년 1학기</option
+                            ><option>2021년 겨울학기</option
+                            ><option>2021년 2학기</option
+                            ><option>2021년 여름학기</option
+                            ><option>2021년 1학기</option
+                            ><option>2020년 겨울학기</option
+                            ><option>2020년 2학기</option
+                            ><option>2020년 여름학기</option
+                            ><option>2020년 1학기</option
+                            ><option>2019년 겨울학기</option
+                            ><option>2019년 2학기</option
+                            ><option>2019년 여름학기</option
+                            ><option>2019년 1학기</option
+                            ><option>2018년 겨울학기</option
+                            ><option>2018년 2학기</option
+                            ><option>2018년 여름학기</option
+                            ><option>2018년 1학기</option></select
+                        >
+                    </form>
+                    <div class="current">
+                        <p>시간표 1</p>
+                    </div>
+                    <div class="choice">
+                    <ul>
+                        <a href=''><li><span>시간표1</span></li></a>
+                        <a href=''><li><span>시간표2</span></li></a>
+                        <a href=''><li><span>시간표3</span></li></a>
+                        <a href=''><li><span>
+                            새 시간표 만들기
+                            </span></li></a>
+                    </ul>
+                    </div>
+                </aside>
+                    <table>
+                        <colgroup>
+                        <col class="col1" />
+                        <col class="col2" />
+                        <col class="col3" />
+                        <col class="col4" />
+                        <col class="col5" />
+                        <col class="col6" />
+                        <col class="col7" />
+                    </colgroup>
+                        <tr class="thead">
+                            <td></td>
+                            <td>월</td>
+                            <td>화</td>
+                            <td>수</td>
+                            <td>목</td>
+                            <td>금</td>
+                        </tr>
+                        <tr>
+                            <td>1교시</td>
+                            <td>선형대수학 <br> S512</td>
+                            <td></td>
+                            <td>고급알고리즘 <br> A501</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2교시</td>
+                            <td>선형대수학 <br> S512</td>
+                            <td></td>
+                            <td>체육</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3교시</td>
+                            <td>일본어<br>S313</td>
+                            <td>고급알고리즘<br>S501</td>
+                            <td></td>
+                            <td></td>
+                            <td>정보과학프로젝트<br> A501</td>
+                        </tr>
+                        <tr>
+                            <td>4교시</td>
+                            <td>일본어<br>S313</td>
+                            <td>고급알고리즘<br>S501</td>
+                            <td>수학세미나<br>S414</td>
+                            <td></td>
+                            <td>정보과학프로젝트<br> A501</td>
+                        </tr>
+                        <tr>
+                            <td>5교시</td>
+                            <td>인공지능프로젝트<br>A501</td>
+                            <td>수학세미나<br>S414</td>
+                            <td></td>
+                            <td>물리학세미나<br>S213</td>
+                            <td>창체</td>
+                        </tr>
+                        <tr>
+                            <td>6교시</td>
+                            <td>인공지능프로젝트<br>A501</td>
+                            <td></td>
+                            <td></td>
+                            <td>물리학세미나<br>S213</td>
+                            <td>물리학세미나<br>S213</td>
+                        </tr>
+                        <tr>
+                            <td>7교시</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>선형대수학 <br> S512</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>8교시</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>선형대수학 <br> S512</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>9교시</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+            </div>
+		</main>
+		
+	</body>
+</html>

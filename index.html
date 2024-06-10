@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI News Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .header { background-color: #000000; color: white; padding: 10px 0; text-align: center; }
+        .content { text-align: center; margin-top: 50px; }
+        .button { background-color: #000000; color: white; padding: 10px 20px; text-decoration: none; }
+        .square-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .square {
+            width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            border: 1px solid transparent;
+        }
+        .square img {
+            margin-top: 10px;
+            width: 100px;
+            height: auto;
+        }
+        .square.everytime {
+            background-color: white;
+            border-color: red;
+            color: black;
+        }
+        .square.dcinside {
+            background-color: #192875;
+            color: white;
+        }
+        .square.nate {
+            background-color: white;
+            border-color: red;
+            color: black;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            window.history.pushState({}, document.title, window.location.pathname);
+        });
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>AI News Generator</h1>
+    </div>
+    <div class="content">
+        <p style="text-align: center;">AI 뉴스 생성기는 성별, 나이, 정치 성향 등 다양한 요소를 고려하여 맞춤 뉴스를 제공할 수 있는 영상을 제작하는 프로그램입니다.</p>
+        <p style="text-align: center;">다양한 사회 문제들을 한 쪽에서만 바라보는 것이 아닌 다양한 시각에서 바라볼 수 있는 기회를 제공하는 것을 목표로 하고 있습니다.</p>
+        <p style="text-align: center;">이 웹사이트는 2024년 세종과학예술영재학교 학생 박준우, 엄주환이 인공지능 프로젝트 수업의 과제로 제작되었습니다.</p>
+        <p style="text-align: center;">설문에서 수집한 정보는 오직 뉴스 제작 시에만 사용하고 따로 저장하지 않음을 알려드립니다.</p>
+        <br>
+        <div class="square-container">
+            <a href="/everytime" class="square everytime">
+                <img src="{{ url_for('static', filename='data/everytime.png') }}" alt="Everytime">
+                에브리 데이
+            </a>
+            <a href="/dcinside" class="square dcinside">
+                <img src="{{ url_for('static', filename='data/dcinside.png') }}" alt="DCInside">
+                dcoutside
+            </a>
+            <a href="/nate" class="square nate">
+                <img src="{{ url_for('static', filename='data/nate.png') }}" alt="Nate">
+                note 판
+            </a>
+        </div>
+        <br>
+        <strong>테마를 선택하세요</strong>
+    </div>
+</body>
+</html>

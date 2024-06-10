@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .success-container {
+            text-align: center;
+        }
+        .download-button {
+            background-color: #000000;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function redirectToIndex() {
+            window.location.href = "/";
+        }
+    </script>
+</head>
+<body onclick="redirectToIndex()">
+    <div class="success-container" onclick="event.stopPropagation();">
+        <h1>영상제작에 성공하였습니다.</h1>
+        <p>아무 곳이나 클릭해서 메뉴화면으로 돌아가세요.</p>
+        <a id="downloadLink" class="download-button" href="{{ url_for('download', filename=video_filename) }}">Download your video</a>
+    </div>
+</body>
+</html>

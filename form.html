@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI News Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .header { background-color: #000000; color: white; padding: 10px 0; text-align: center; }
+        .content { text-align: center; margin-top: 50px; }
+        .form-group { margin: 20px 0; }
+        .form-group label { font-size: 1.5em; }
+        .button { background-color: #000000; color: white; padding: 10px 20px; text-decoration: none; border: none; cursor: pointer; }
+        .error { color: red; }
+        .politics-group { display: flex; justify-content: center; align-items: center; gap: 40px; }
+        .circle { width: 50px; height: 50px; border-radius: 50%; background-color: #ccc; display: inline-block; line-height: 50px; text-align: center; font-size: 14px; cursor: pointer; }
+        .circle.selected { color: white; }
+        .home-button {
+            position: fixed;
+            bottom: 100px;
+            right: 100px;
+            background-color: #000000;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        function selectCircle(element) {
+            document.querySelectorAll('.circle').forEach(circle => {
+                circle.classList.remove('selected');
+                circle.style.backgroundColor = '#ccc';
+            });
+            element.classList.add('selected');
+            const value = element.getAttribute('data-value');
+            if (value === '진보') {
+                element.style.backgroundColor = '#0000FF';
+            } else if (value === '중도 진보') {
+                element.style.backgroundColor = '#4B89DC';
+            } else if (value === '중도') {
+                element.style.backgroundColor = '#92308d';
+            } else if (value === '중도 보수') {
+                element.style.backgroundColor = '#CC4B4B';
+            } else if (value === '보수') {
+                element.style.backgroundColor = '#FF0000';
+            }
+            document.getElementById('politics').value = value;
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>AI News Generator</h1>
+    </div>
+    <div class="content">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class="error">
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        <form action="/submit" method="post">
+            <input type="hidden" name="source" value="{{ source }}">
+            <div class="form-group">
+                <label>성별</label><br>
+                <input type="radio" name="gender" value="남" required> 남
+                <input type="radio" name="gender" value="여"> 여
+            </div>
+            <div class="form-group">
+                <label>정치 성향</label><br>
+                <div class="politics-group">
+                    <label>진보</label>
+                    <div class="circle" data-value="진보" onclick="selectCircle(this)"></div>
+                    <div class="circle" data-value="중도 진보" onclick="selectCircle(this)"></div>
+                    <div class="circle" data-value="중도" onclick="selectCircle(this)"></div>
+                    <div class="circle" data-value="중도 보수" onclick="selectCircle(this)"></div>
+                    <div class="circle" data-value="보수" onclick="selectCircle(this)"></div>
+                    <label>보수</label>
+                </div>
+                <input type="hidden" id="politics" name="politics" required>
+            </div>
+            <div class="form-group">
+                <label>나이</label><br>
+                <input type="text" name="age" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="button">뉴스 생성하기!</button>
+            </div>
+        </form>
+    </div>
+    <button class="home-button" onclick="location.href='/'">Home</button>
+</body>
+</html>

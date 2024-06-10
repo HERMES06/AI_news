@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DCOutside</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f0f0f0;
+            }
+            .header {
+                background-color: #192875;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px 20px;
+            }
+            .header img {
+                height: 40px;
+                cursor: pointer;
+                margin-right: 10px;
+            }
+            .header-title {
+                font-size: 24px;
+                font-weight: bold;
+                margin-left: 10px;
+            }
+            .top-bar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 20px;
+                background-color: white;
+                border-bottom: 1px solid #ccc;
+            }
+            .top-bar a {
+                margin-right: 10px;
+                color: #333;
+                text-decoration: none;
+                font-size: 14px;
+            }
+            .top-bar a:hover {
+                text-decoration: underline;
+            }
+            .content {
+                padding: 20px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+            .box {
+                background-color: #192875;
+                color: white;
+                padding: 20px;
+                margin: 20px;
+                width: 250px;
+                height: 150px;
+                vertical-align: top;
+                text-align: center;
+            }
+            .clickable-box {
+                background-color: gray;
+                color: white;
+                cursor: pointer;
+                margin-top: 20px;
+                padding: 20px;
+                text-align: center;
+            }
+            .back-button {
+                background-color: #192875;
+                color: white;
+                padding: 10px 20px;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            .search-container {
+                display: flex;
+                align-items: center;
+            }
+            .search-box {
+                padding: 10px;
+                width: 400px;
+                font-size: 16px;
+                border: none;
+                border-radius: 5px;
+            }
+            .search-box::placeholder {
+                color: gray;
+            }
+            .search-button {
+                padding: 10px 15px;
+                margin-left: 5px;
+                background-color: white;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+            .notifi {
+                text-align: left;
+                margin: 20px;
+                font-size: 14px;
+            }
+            .gallery {
+                display: flex;
+                justify-content: space-between;
+                gap: 5px;
+                padding: 10px 15px;
+                flex-wrap: wrap;
+            }
+            .gallery-item {
+                position: relative;
+                width: calc((100% - 45px) / 4); /* 4개의 사진이 화면 양 끝을 15px 남기고 각 사진들마다 5px씩 차이나게 배치 */
+            }
+            .gallery-item img {
+                width: 100%;
+                height: auto;
+                display: block;
+                cursor: pointer;
+            }
+            .overlay {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 33%;
+                background-color: rgba(0, 0, 0, 0.71);
+                color: white;
+                display: flex;
+                align-items: center;
+                padding: 5px;
+                box-sizing: border-box;
+            }
+            .overlay p {
+                margin: 0;
+                font-size: 14px;
+            }
+            .sub-header {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #192875;
+                padding: 10px 0;
+                font-size: 18px; /* 글씨 크기 키움 */
+            }
+            .sub-header a {
+                color: white;
+                margin: 0 10px;
+                text-decoration: none;
+            }
+            .sub-header a:hover {
+                text-decoration: underline;
+            }
+            .logo-container {
+                display: flex;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="top-bar">
+            <div>
+                <a href="https://gall.dcinside.com/m">마이너갤</a>
+                <a href="https://gall.dcinside.com/n">미니갤</a>
+                <a href="https://gallog.dcinside.com/">갤로그</a>
+                <a href="https://nft.dcinside.com/">NFT</a>
+                <a href="https://dcnewsj.joins.com/">디시뉴스</a>
+                <a href="https://h5.dcinside.com/game/main">디시게임</a>
+                <a href="https://event.dcinside.com/">이벤트</a>
+                <a href="https://mall.dcinside.com/?from=A08">디시콘</a>
+            </div>
+            <div>
+                <a href="https://sign.dcinside.com/login?s_url=https%3A%2F%2Fgall.dcinside.com%2Fboard%2Fview%2F%3Fid%3Ddcbest%26no%3D236869&s_key=509">로그인</a>
+                <a href="" style="color: #333;">🌙 야간모드</a>
+                <a href="" style="background-color: #8BC34A; color: white; border-radius: 15px; padding: 2px 10px; margin-left: 5px;">야간 모드를 이용해 보세요</a>
+            </div>
+        </div>
+        <div class="header">
+            <div class="logo-container">
+                <a href="/"><img src="{{ url_for('static', filename='data/dcinside.png') }}" alt="DCOutsideLogo"></a>
+                <span class="header-title">DCOutside</span>
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="갤러리 & 통합검색">
+                <button class="search-button">🔍</button>
+            </div>
+        </div>
+        <div class="sub-header">
+            <a href="https://gall.dcinside.com/">갤러리</a>
+            <a href="https://gall.dcinside.com/m">마이너갤</a>
+            <a href="https://gall.dcinside.com/n">미니갤</a>
+            <a href="https://gallog.dcinside.com/">갤로그</a>
+            <a href="https://dcnewsj.joins.com/">디시뉴스</a>
+            <a href="https://nft.dcinside.com/">NFT</a>
+        </div>
+        <div class="content">
+            <div class="gallery">
+                <div class="gallery-item">
+                    <a href="https://gall.dcinside.com/board/view/?id=dcbest&no=236875"><img src="{{ url_for('static', filename='data/Gallery Image 1.png') }}" alt="Gallery Image 1"></a>
+                    <div class="overlay">
+                        <p>주목받았던 한일공동개발 '7광구', 현재 진행 상황은?.jpg</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <a href="https://gall.dcinside.com/board/view/?id=dcbest&no=236871"><img src="{{ url_for('static', filename='data/Gallery Image 2.png') }}" alt="Gallery Image 2"></a>
+                    <div class="overlay">
+                        <p>ai시대에 일자리가 사라지면 어떻게될지 예측하는 전문가...jpg</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <a href="https://gall.dcinside.com/board/view/?id=dcbest&no=236869"><img src="{{ url_for('static', filename='data/Gallery Image 3.png') }}" alt="Gallery Image 3"></a>
+                    <div class="overlay">
+                        <p>노회찬이 알려주는 법사위원장과 국회의장의 상관관계</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <a href="https://gall.dcinside.com/board/view/?id=dcbest&no=236867"><img src="{{ url_for('static', filename='data/Gallery Image 4.png') }}" alt="Gallery Image 4"></a>
+                    <div class="overlay">
+                        <p>지금 PD수첩서 선동하는 할머니 정체 .jpg</p>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <p>본 웹사이트가 제공하는<br>AI 뉴스 생성기는 성별, 나이, 정치 성향 등 다양한 요소를 고려하여 맞춤 뉴스를 제공할 수 있는 영상을 제작하는 프로그램입니다.</p>
+            </div>
+            <div class="box">
+                <p>다양한 사회 문제들을 한 쪽에서만 바라보는 것이 아닌 다양한 시각에서 바라볼 수 있는 기회를 제공하는 것을 목표로 하고 있습니다.</p>
+            </div>
+            <div class="box" onclick="location.href='{{ url_for('form', source='dcinside') }}'">
+                <p>지금 당장 나만의 뉴스 릴스 만들러 가기 !!</p>
+                <div class="clickable-box"> 여기를 클릭하세요! </div>
+            </div>
+            <p class="notifi">이 웹사이트는 2024년 세종과학예술영재학교 학생 박준우, 엄주환이 인공지능 프로젝트 수업의 일환으로 설문을 통해 수집한 정보는 오직 뉴스 제작 시에만 사용하고 따로 저장하지 않음을 알려드립니다.</p>
+        </div>
+    </body>
+</html>

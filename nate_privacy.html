@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nate - Home</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            font-size: 14px;
+            background-color: white;
+        }
+        .top-bar a {
+            text-decoration: none;
+            color: black;
+            margin-right: 10px;
+        }
+        .top-bar .right {
+            display: flex;
+            align-items: center;
+        }
+        .header { 
+            background-color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 10px 20px; 
+            border-bottom: 1px solid #ccc; 
+        }
+        .header img {
+            height: 40px;
+            cursor: pointer;
+        }
+        .header .logo {
+            display: flex;
+            align-items: center;
+        }
+        .header .logo span {
+            font-size: 40px;
+            color: black;
+            font-weight: bold;
+        }
+        .header .logo span.red {
+            color: red;
+        }
+        .center-nav {
+            display: flex;
+            justify-content: center;
+            flex-grow: 1;
+        }
+        .center-nav a { 
+            margin: 0 20px; 
+            text-decoration: none; 
+            color: black; 
+            font-size: 20px; 
+        }
+        .center-nav a:hover {
+            text-decoration: underline;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-left: 50px;
+        }
+        .search-container input {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .search-container button {
+            padding: 5px 10px;
+            font-size: 16px;
+            border: none;
+            background-color: #ccc;
+            cursor: pointer;
+            margin-left: 5px;
+            border-radius: 4px;
+        }
+        .content { 
+            display: grid; 
+            grid-template-columns: 3fr 1fr; /* 오른쪽 패널을 더 오른쪽으로 이동 */
+            gap: 20px; 
+            padding: 20px;
+        }
+        .box { 
+            border-bottom: 1px solid black; 
+            padding: 20px; 
+            grid-column: span 2; /* 이 줄을 추가하여 전체 너비로 확장 */
+        }
+        .right-panel { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-end; /* 오른쪽으로 정렬 */
+            margin-left: auto; /* 더 오른쪽으로 이동 */
+        }
+        .date-box, .school-box, .back-button { 
+            margin-bottom: 20px; 
+            padding: 10px; 
+            border: 1px solid black; 
+            width: 250px; /* 사각형 너비 고정 */
+        }
+        .school-box img { 
+            display: block; 
+            margin: 0 auto; 
+        }
+        .back-button { 
+            background-color: white; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+        }
+        .back-button img { 
+            width: 20px; 
+            margin-right: 5px; 
+        }
+        .news-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); /* 사진의 크기를 키우기 위해 2열로 조정 */
+            gap: 20px; 
+            width: 100%;
+        }
+        .news-item { 
+            position: relative; 
+            overflow: hidden;
+            height: 300px;  /* 사진 크기를 키움 */
+        }
+        .news-item img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; /* 이미지 비율을 유지하면서 영역을 채움 */
+        }
+        .news-title { 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            background: rgba(0, 0, 0, 0.7); 
+            color: white; 
+            font-size: 16px; 
+            padding: 10px; 
+            box-sizing: border-box;
+        }
+        .additional-content {
+            margin-bottom: 20px;
+        }
+        .additional-content h3 {
+            margin-bottom: 10px;
+        }
+        .additional-content ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .additional-content ul li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div>
+            <a href="/nate">노오트 메인가기</a>
+        </div>
+        <div class="right">
+            <a href="#">로그인</a>
+            <a href="#">메일</a>
+            <a href="#">뉴스</a>
+            <a href="#">판</a>
+            <a href="#">TV</a>
+            <a href="#">톡톡</a>
+            <a href="#">툰앤북</a>
+            <a href="#">게임</a>
+            <a href="#">쇼핑</a>
+            <a href="#">더보기 +</a>
+        </div>
+    </div>
+    <div class="header">
+        <div class="logo">
+            <span class="red">note</span> <span>판</span>
+        </div>
+        <div class="center-nav">
+            <a href="/nate">뉴스</a>
+            <a href="">연예</a>
+            <a href="">스포츠</a>
+            <a href="/pnate">개인정보 처리</a>
+            <a href="{{ url_for('form', source='nate') }}">뉴스 생성</a>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="전체">
+            <button>검색</button>
+        </div>
+    </div>
+    <div class="content">
+        <div class="box">
+            <p>사용자 맞춤 <strong>릴스를</strong> 제작하기 위해서 사용자의 성별, 나이, 정치 성향을 묻는 설문을 진행합니다. 하지만 설문에서 수집한 정보는 <strong>오직 뉴스 제작 시에만 사용</strong>하고 따로 저장하지 않음을 알려드립니다.</p>
+            <p>또한 <strong>만 17세 미만</strong>은 본 사이트를 이용하실 수 없습니다.</p>
+        </div>
+    </div>
+    <div class="box">
+        <h2>오늘의 톡</h2>
+        <p>본 웹사이트가 제공하는 <strong>AI 뉴스 생성기</strong>는 성별, 나이, 정치 성향 등 다양한 요소를 고려하여 맞춤 뉴스를 제공할 수 있는 영상을 제작하는 프로그램입니다.</p>
+        <p>다양한 사회 문제들을 한 쪽에서만 바라보는 것이 아닌 <strong>다양한 시각</strong>에서 바라볼 수 있는 기회를 제공하는 것을 목표로 하고 있습니다.</p>
+    </div>
+    <script>
+        function updateCurrentDate() {
+            const now = new Date();
+            const formattedDate = now.toLocaleString('ko-KR', { 
+                year: 'numeric', 
+                month: '2-digit', 
+                day: '2-digit', 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit' 
+            });
+            document.getElementById('current-date').textContent = formattedDate;
+        }
+
+        document.addEventListener('DOMContentLoaded', updateCurrentDate);
+    </script>
+</body>
+</html>
